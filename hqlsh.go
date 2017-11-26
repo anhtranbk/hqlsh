@@ -86,7 +86,7 @@ func parseToTable(m map[string]interface{}) ([]string, [][]string) {
 	return headers, data
 }
 
-func parseFromJson(text string) map[string]interface{} {
+func parseFromJson(text []byte]) map[string]interface{} {
 	var f interface{}
 	err := json.Unmarshal([]byte(text), &f)
 	if err != nil {
@@ -119,7 +119,7 @@ func fetchDataFromUrl(url string) map[string]interface{} {
 	}
 
 	// fmt.Println(string(body))
-	return parseFromJson(string(body))
+	return parseFromJson(body)
 }
 
 func processGetRequest(tableName string, row string) map[string]interface{} {
